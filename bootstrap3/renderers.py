@@ -161,7 +161,7 @@ class FormRenderer(BaseRenderer):
     def get_fields_errors(self):
         form_errors = []
         for field in self.form:
-            if field.is_hidden and field.errors:
+            if field.errors:
                 form_errors += field.errors
         return form_errors
 
@@ -211,6 +211,8 @@ class FieldRenderer(BaseRenderer):
 
         if get_bootstrap_setting('set_placeholder'):
             self.placeholder = field.label
+        elif self.field.placeholder:
+            self.placeholder = self.field.placeholder
         else:
             self.placeholder = ''
 
